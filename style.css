@@ -139,6 +139,13 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.page-footer {
+  margin-top: 2.5rem;
+  color: #4b6994;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .panels {
     grid-template-columns: 1fr;
