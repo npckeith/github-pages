@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Showcase</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 3rem 1.5rem;
+        min-height: 100vh;
+        color: #f8fafc;
+        font-family: system-ui, sans-serif;
+        background: linear-gradient(135deg, #111827, #312e81, #7c3aed);
+      }
+      main {
+        max-width: 950px;
+        margin: auto;
+      }
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 2.5rem;
+        border: 1px solid #ffffff33;
+        border-radius: 28px;
+        background: #ffffff14;
+        box-shadow: 0 24px 70px #0005;
+      }
+      .eyebrow {
+        color: #fbbf24;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0.5rem 0 1rem;
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        line-height: 0.95;
+      }
+      .hero p {
+        max-width: 520px;
+        color: #dbeafe;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      .orb {
+        display: grid;
+        width: 150px;
+        height: 150px;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 50%;
+        color: #312e81;
+        font-size: 3.5rem;
+        background: linear-gradient(145deg, #fef3c7, #f472b6, #8b5cf6);
+        box-shadow: 0 0 70px #f0abfc99;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+        border-radius: 20px;
+        background: #0f172acc;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-6px) rotate(-1deg);
+        background: #1e293bdd;
+      }
+      .icon {
+        font-size: 2rem;
+      }
+      h2 {
+        margin: 0.8rem 0 0.4rem;
+      }
+      .card p {
+        margin: 0;
+        color: #cbd5e1;
+        line-height: 1.5;
+      }
+      .script-test {
+        margin-top: 1rem;
+        padding: 1.5rem;
+        border: 1px solid #fbbf2488;
+        border-radius: 20px;
+        background: #0f172acc;
+      }
+      .script-test h2 {
+        margin-top: 0;
+      }
+      .script-status {
+        margin: 1rem 0 0;
+        color: #bbf7d0;
+        line-height: 1.5;
+      }
+      .demo-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 2.5rem 0 1rem;
+      }
+      .demo-heading h2 {
+        margin: 0;
+      }
+      .demo-heading p {
+        margin: 0;
+        color: #cbd5e1;
+      }
+      .ui-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .demo-card {
+        padding: 1.4rem;
+        border: 1px solid #ffffff22;
+        border-radius: 14px;
+        background: #0f172acc;
+      }
+      .demo-card h3 {
+        margin: 0 0 0.4rem;
+      }
+      .demo-card > p {
+        margin: 0 0 1rem;
+        color: #cbd5e1;
+        line-height: 1.5;
+      }
+      .clock {
+        margin: 0.5rem 0;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.04em;
+      }
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .button-row button,
+      .demo-card button {
+        margin-top: 0;
+      }
+      .secondary {
+        color: #f8fafc;
+        background: #334155;
+      }
+      .secondary:hover {
+        background: #475569;
+      }
+      .theme-light {
+        color: #172033;
+        background: linear-gradient(135deg, #dbeafe, #fef3c7, #dcfce7);
+      }
+      .theme-light .hero,
+      .theme-light .demo-card,
+      .theme-light .script-test,
+      .theme-light .card {
+        background: #ffffffbb;
+        border-color: #17203333;
+      }
+      .theme-light .hero p,
+      .theme-light .demo-card > p,
+      .theme-light .demo-heading p,
+      .theme-light .card p {
+        color: #475569;
+      }
+      .theme-light .secondary {
+        color: #f8fafc;
+      }
+      .tabs {
+        display: flex;
+        gap: 0.4rem;
+        border-bottom: 1px solid #ffffff33;
+      }
+      .tab {
+        margin: 0;
+        border-radius: 8px 8px 0 0;
+        color: #cbd5e1;
+        background: transparent;
+      }
+      .tab.active,
+      .tab:hover {
+        color: #172033;
+        background: #fbbf24;
+      }
+      .tab-panel {
+        min-height: 4rem;
+        padding-top: 1rem;
+        color: #dbeafe;
+        line-height: 1.5;
+      }
+      .accordion {
+        border-bottom: 1px solid #ffffff33;
+      }
+      .accordion summary {
+        padding: 0.9rem 0;
+        cursor: pointer;
+        font-weight: 800;
+      }
+      .accordion p {
+        margin: 0 0 1rem;
+        color: #cbd5e1;
+        line-height: 1.5;
+      }
+      dialog {
+        width: min(90vw, 420px);
+        padding: 0;
+        border: 0;
+        border-radius: 14px;
+        color: #172033;
+        box-shadow: 0 24px 80px #0008;
+      }
+      dialog::backdrop {
+        background: #020617aa;
+        backdrop-filter: blur(4px);
+      }
+      .modal-content {
+        padding: 1.5rem;
+      }
+      .modal-content h2 {
+        margin-top: 0;
+      }
+      .modal-content p {
+        color: #475569;
+        line-height: 1.5;
+      }
+      .toast {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 2;
+        max-width: min(90vw, 340px);
+        padding: 1rem 1.2rem;
+        border-left: 4px solid #fbbf24;
+        border-radius: 8px;
+        color: #f8fafc;
+        background: #172033;
+        box-shadow: 0 12px 30px #0006;
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        pointer-events: none;
+      }
+      .toast.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.8rem 1.2rem;
+        border: 0;
+        border-radius: 999px;
+        color: #312e81;
+        background: #fbbf24;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #fde68a;
+      }
+      @media (max-width: 600px) {
+        .hero {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .ui-grid {
+          grid-template-columns: 1fr;
+        }
+        .demo-heading {
+          display: block;
+        }
+        .demo-heading p {
+          margin-top: 0.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">A little something different</div>
+          <h1>Make space<br />for ideas.</h1>
+          <p>
+            A playful collection of shapes, colour, and tiny moments of delight.
+          </p>
+          <button type="button">Explore the vibe →</button>
+        </div>
+        <div class="orb" aria-hidden="true">✦</div>
+      </section>
+      <section class="grid" aria-label="Highlights">
+        <article class="card">
+          <div class="icon">🌈</div>
+          <h2>Colour</h2>
+          <p>Bold gradients to brighten the ordinary.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚡</div>
+          <h2>Energy</h2>
+          <p>Small interactions with a little spark.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🪴</div>
+          <h2>Growth</h2>
+          <p>Room for experiments and new beginnings.</p>
+        </article>
+      </section>
+      <section class="script-test" aria-labelledby="script-test-title">
+        <h2 id="script-test-title">JavaScript iframe test</h2>
+        <p>
+          Use this button to check whether Softools allows scripts in the embed.
+        </p>
+        <button id="run-test" type="button">Run script test</button>
+        <p
+          id="script-status"
+          class="script-status"
+          role="status"
+          aria-live="polite"
+        >
+          Waiting for JavaScript...
+        </p>
+      </section>
+      <div class="demo-heading">
+        <div>
+          <div class="eyebrow">Interaction lab</div>
+          <h2>Useful UI patterns</h2>
+        </div>
+        <p>Small, practical examples for embedded experiences.</p>
+      </div>
+      <section class="ui-grid" aria-label="Interactive UI examples">
+        <article class="demo-card">
+          <h3>Live clock</h3>
+          <p>A real-time status indicator using the browser clock.</p>
+          <div id="clock" class="clock" aria-live="polite">--:--:--</div>
+          <small id="date-label">Loading date...</small>
+        </article>
+        <article class="demo-card">
+          <h3>Theme switcher</h3>
+          <p>Lets users choose a comfortable visual mode.</p>
+          <button id="theme-toggle" class="secondary" type="button">
+            Switch to light mode
+          </button>
+        </article>
+        <article class="demo-card">
+          <h3>Modal dialog</h3>
+          <p>Useful for confirmations, detail views, or focused tasks.</p>
+          <button id="open-modal" type="button">Open modal</button>
+        </article>
+        <article class="demo-card">
+          <h3>Toast notification</h3>
+          <p>Gives quick feedback without interrupting the workflow.</p>
+          <button id="show-toast" type="button">Show notification</button>
+        </article>
+        <article class="demo-card">
+          <h3>Tabbed content</h3>
+          <p>Organises related content while keeping the page compact.</p>
+          <div class="tabs" role="tablist" aria-label="Example content tabs">
+            <button
+              class="tab active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-panel="overview"
+            >
+              Overview
+            </button>
+            <button
+              class="tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="details"
+            >
+              Details
+            </button>
+          </div>
+          <div id="tab-panel" class="tab-panel">
+            A focused summary is visible by default.
+          </div>
+        </article>
+        <article class="demo-card">
+          <h3>Progressive disclosure</h3>
+          <p>Reveals extra information only when someone asks for it.</p>
+          <details class="accordion">
+            <summary>How does this help?</summary>
+            <p>
+              It reduces visual noise while keeping supporting detail close at
+              hand.
+            </p>
+          </details>
+        </article>
+      </section>
+    </main>
+    <dialog id="demo-modal">
+      <div class="modal-content">
+        <h2>Modal dialog</h2>
+        <p>
+          This focused surface can contain a confirmation, form, or important
+          detail.
+        </p>
+        <button id="close-modal" type="button">Close modal</button>
+      </div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      Action completed.
+    </div>
+    <script>
+      (function () {
+        var button = document.getElementById("run-test");
+        var status = document.getElementById("script-status");
+        var runCount = 0;
+        var clock = document.getElementById("clock");
+        var dateLabel = document.getElementById("date-label");
+        var themeToggle = document.getElementById("theme-toggle");
+        var modal = document.getElementById("demo-modal");
+        var toast = document.getElementById("toast");
+        var toastTimer;
+
+        function updateClock() {
+          var currentDate = new Date();
+          clock.textContent = currentDate.toLocaleTimeString();
+          dateLabel.textContent = currentDate.toLocaleDateString(undefined, {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          });
+        }
+
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add("visible");
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(function () {
+            toast.classList.remove("visible");
+          }, 2600);
+        }
+
+        updateClock();
+        window.setInterval(updateClock, 1000);
+
+        button.addEventListener("click", function () {
+          runCount += 1;
+          var frameMode =
+            window.self === window.top ? "top-level page" : "iframe";
+          var now = new Date().toLocaleTimeString();
+
+          status.textContent =
+            "JavaScript executed successfully in " +
+            frameMode +
+            " at " +
+            now +
+            " (run " +
+            runCount +
+            ").";
+        });
+
+        themeToggle.addEventListener("click", function () {
+          var isLight = document.body.classList.toggle("theme-light");
+          themeToggle.textContent = isLight
+            ? "Switch to dark mode"
+            : "Switch to light mode";
+          showToast(isLight ? "Light mode enabled." : "Dark mode enabled.");
+        });
+
+        document
+          .getElementById("open-modal")
+          .addEventListener("click", function () {
+            modal.showModal();
+          });
+        document
+          .getElementById("close-modal")
+          .addEventListener("click", function () {
+            modal.close();
+          });
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.close();
+          }
+        });
+
+        document
+          .getElementById("show-toast")
+          .addEventListener("click", function () {
+            showToast("Your notification was shown without leaving the page.");
+          });
+
+        document.querySelectorAll(".tab").forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            document.querySelectorAll(".tab").forEach(function (item) {
+              item.classList.remove("active");
+              item.setAttribute("aria-selected", "false");
+            });
+            tab.classList.add("active");
+            tab.setAttribute("aria-selected", "true");
+            document.getElementById("tab-panel").textContent =
+              tab.dataset.panel === "overview"
+                ? "A focused summary is visible by default."
+                : "Additional details can be switched into view on demand.";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
