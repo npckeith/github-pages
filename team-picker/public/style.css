@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+  color: #1e4479;
+  font-family: "Inter", sans-serif;
+  background: #f2eee7;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  margin-bottom: 1.2rem;
+}
+
+h1 {
+  margin: 0.5rem 0 1rem;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  color: #1e4479;
+}
+
+.rotating-word {
+  display: inline-block;
+  color: #33a6e3;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.rotating-word.fade {
+  opacity: 0;
+  transform: translateY(0.2em);
+}
+
+.page-header p {
+  max-width: 560px;
+  color: #4b6994;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  padding: 1.8rem;
+  border: 1px solid #d2dae4;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 40px #1e447914;
+  text-align: center;
+}
+
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  color: #1e4479;
+}
+
+.result-display {
+  min-height: 3.5rem;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background: #e9ecf2;
+  color: #1e4479;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.wheel-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  z-index: 2;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid #1e4479;
+}
+
+#wheel-canvas {
+  border-radius: 50%;
+  box-shadow: 0 12px 40px #1e447926;
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1.5px solid #1e4479;
+  border-radius: 8px;
+  color: #fff;
+  background: #1e4479;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #4b6994;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+}
